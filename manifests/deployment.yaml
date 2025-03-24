@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ojs
-          image: ojsproject/ojs:3.3.0-13
+          image: pkpofficial/ojs:3_3_0-15
           ports:
             - containerPort: 80
           volumeMounts:
