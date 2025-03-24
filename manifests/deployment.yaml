@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ojs
-          image: ojsproject/ojs:latest
+          image: ojsproject/ojs:3.3.0-13
           ports:
             - containerPort: 80
           volumeMounts:
