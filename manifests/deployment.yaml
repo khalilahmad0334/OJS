@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ojs
+  labels:
+    app: ojs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ojs
+  template:
+    metadata:
+      labels:
+        app: ojs
+    spec:
+      containers:
+        - name: ojs
+          image: ojsproject/ojs:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: ojs-storage
+              mountPath: /var/www/html
+          env:
+            - name: DB_HOST
+              value: "mariadb"
+            - name: DB_USER
+              value: "ojsuser"
+            - name: DB_PASSWORD
+              value: "ojs-password"
+            - name: DB_NAME
+              value: "ojsdb"
+      volumes:
+        - name: ojs-storage
+          persistentVolumeClaim:
+            claimName: ojs-pvc
